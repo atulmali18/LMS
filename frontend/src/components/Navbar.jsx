@@ -7,11 +7,11 @@ const Navbar = () => {
   return (
      <nav className="bg-gradient-to-r from-pink-100 to-purple-100 px-6 py-4 flex items-center justify-between shadow-md">
       {/* Logo */}
-      <div className="flex items-center space-x-2">
-        <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">
-          E
-        </div>
-        <span className="text-xl font-semibold text-gray-800">EduConnect</span>
+      <div className="flex ">
+        <span className="text-red-500 text-3xl font-extrabold">S</span>
+        <span className="text-2xl font-extrabold text-gray-800 underline decoration-red-500 underline-offset-4 ">
+          <span className="">peedUp</span> <span >Infotech</span>
+        </span>
       </div>
 
       {/* Menu Links */}
@@ -27,13 +27,21 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">
-                {currentUser.name ? currentUser.name[0].toUpperCase() : 'U'}
+                {currentUser?.name
+                  ? currentUser.name[0].toUpperCase()
+                  : currentUser?.firstName
+                      ? currentUser.firstName[0].toUpperCase()
+                      : currentUser?.email
+                        ? currentUser.email[0].toUpperCase()
+                        : 'U'}
               </div>
-              <span className="text-gray-800 font-medium">{currentUser.name || currentUser.email}</span>
+              <span className="text-gray-800 font-medium">
+                Welcome, {currentUser.name || currentUser.firstName || "User"}
+              </span>
             </div>
             <button 
               onClick={logout}
-              className="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-red-600 transition"
+              className="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-red-600 transition cursor-pointer"
             >
               Logout
             </button>

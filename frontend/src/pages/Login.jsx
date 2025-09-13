@@ -1,34 +1,76 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // simple states
+  // Show toast if redirected from protected route
+  useEffect(() => {
+    if (location.state?.fromProtected) {
+      toast.error(
+        "Login required to access this page!",
+        { id: "login-required", duration: 3000 }
+      );
+    }
+  }, [location.state]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+  // validate function
+  const validate = () => {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    return newErrors;
+  };
 
   // form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const result = await login(email, password);
-
       if (result.success) {
-        navigate("/");
+        toast.success("Login successful! Redirecting...");
+        setTimeout(() => navigate("/"), 1200);
       } else {
-        alert("Login failed");
+        toast.error("Invalid email or password");
       }
     } catch (err) {
-      alert("Something went wrong");
+      console.error("Login Error:", err);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
   return (
     <div className="inset-0 bg-opacity-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden">
+        {/* Toast */}
+        <Toaster position="top-right" reverseOrder={false} />
+
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800 text-center">
             Welcome Back
@@ -50,10 +92,14 @@ const Login = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent"
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              }`}
               placeholder="your.email@example.com"
-              required
             />
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Password */}
@@ -69,10 +115,14 @@ const Login = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent"
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              }`}
               placeholder="••••••••"
-              required
             />
+            {errors.password && (
+              <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+            )}
           </div>
 
           {/* Forgot Password */}
@@ -88,7 +138,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-red-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-600 transition shadow-md"
+            className="w-full bg-red-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-600 transition shadow-md cursor-pointer"
           >
             Sign In
           </button>
@@ -99,7 +149,7 @@ const Login = () => {
               Don&apos;t have an account?{" "}
               <Link
                 to="/signup"
-                className="text-red-500 font-semibold hover:text-red-600"
+                className="text-red-500 font-semibold hover:text-red-600 cursor-pointer"
               >
                 Sign up now
               </Link>

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import pythonCourse from '../assets/images/courses/python-course.jpg';
+import mernCourse from '../assets/images/courses/mern-course.jpg';
+import dataAnalytics from '../assets/images/courses/data-analytics.jpg';
 
 const Courses = () => {
   // State for courses
@@ -8,7 +11,8 @@ const Courses = () => {
       title: "Python Development",
       description:
         "Learn Python, OOP, APIs, and frameworks like Django and Flask for backend development.",
-      price: "$89.99",
+      price: "₹35,999",
+      image: pythonCourse,
       gradient: "from-blue-400 to-purple-500",
     },
     {
@@ -16,7 +20,8 @@ const Courses = () => {
       title: "MERN Stack",
       description:
         "Master MongoDB, Express.js, React, and Node.js to build full-stack web applications.",
-      price: "$99.99",
+      price: "₹44,999",
+      image: mernCourse,
       gradient: "from-green-400 to-blue-500",
     },
     {
@@ -24,7 +29,8 @@ const Courses = () => {
       title: "Data Analytics",
       description:
         "Work with Python, Pandas, and visualization tools to analyze and present data insights.",
-      price: "$79.99",
+      price: "₹34,999",
+      image: dataAnalytics,
       gradient: "from-yellow-400 to-red-500",
     },
   ]);
@@ -47,9 +53,14 @@ const Courses = () => {
               key={course.id}
               className="bg-white rounded-lg shadow-md overflow-hidden"
             >
-              <div
-                className={`h-48 bg-gradient-to-r ${course.gradient}`}
-              ></div>
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                />
+                
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
                   {course.title}

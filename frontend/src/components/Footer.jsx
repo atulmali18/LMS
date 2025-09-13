@@ -9,10 +9,13 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">
-                E
-              </div>
-              <span className="text-xl font-semibold text-gray-800">EduConnect</span>
+             
+               <div className="flex ">
+        <span className="text-red-500 text-3xl font-extrabold">S</span>
+        <span className="text-2xl font-extrabold text-gray-800 underline decoration-red-500 underline-offset-4">
+          <span className="">peedUp</span> <span >Infotech</span>
+        </span>
+      </div>
             </div>
             <p className="text-gray-600 mb-4 max-w-md">
               Empowering students and educators with innovative learning solutions. 
