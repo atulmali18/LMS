@@ -8,7 +8,7 @@ import Announcements from './pages/Announcements';
 import Header from './components/Navbar';
 import { useAuth } from './context/AuthContext';
 import Footer from './components/Footer';
-import { Toaster, toast } from 'react-hot-toast'; // <-- Add this
+import { Toaster, toast } from 'react-hot-toast'; 
 
 // RequireAuth component to protect routes
 const RequireAuth = ({ children }) => {
