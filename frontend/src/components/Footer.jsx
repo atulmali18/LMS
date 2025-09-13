@@ -43,8 +43,6 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="#home" className="text-gray-600 hover:text-gray-900">Home</a></li>
               <li><a href="#courses" className="text-gray-600 hover:text-gray-900">Courses</a></li>
-              <li><a href="#support" className="text-gray-600 hover:text-gray-900">Support</a></li>
-              <li><a href="#about" className="text-gray-600 hover:text-gray-900">About Us</a></li>
             </ul>
           </div>
 
@@ -62,7 +60,7 @@ const Footer = () => {
               </li>
               <li className="text-gray-600 flex items-start">
                 <i className="fas fa-envelope mr-2 mt-1"></i>
-                <span>info@educonnect.com</span>
+                <span>info@Xyz.com</span>
               </li>
             </ul>
           </div>
