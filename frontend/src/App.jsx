@@ -14,12 +14,6 @@ import { Toaster, toast } from 'react-hot-toast'; // <-- Add this
 const RequireAuth = ({ children }) => {
   const { currentUser, loading } = useAuth();
 
-  useEffect(() => {
-    if (!loading && !currentUser) {
-      toast.error('Login required to access this page!', { id: 'login-required', duration: 3000 });
-    }
-  }, [loading, currentUser]);
-
   if (loading) {
     return <div>Loading...</div>;
   }

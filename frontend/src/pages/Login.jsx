@@ -52,16 +52,13 @@ const Login = () => {
     }
 
     try {
-      const result = await login(email, password);
-      if (result.success) {
-        toast.success("Login successful! Redirecting...");
-        setTimeout(() => navigate("/"), 1200);
-      } else {
-        toast.error("Invalid email or password");
-      }
-    } catch (err) {
-      console.error("Login Error:", err);
-      toast.error("Something went wrong. Please try again.");
+      await login(email, password);
+      toast.success("Login successful! Redirecting.", { duration: 2000 });
+      setTimeout(() => {
+        navigate("/");
+      }, 2000); // Wait for toast to show before redirect
+    } catch (error) {
+      toast.error("Login failed. Please check your credentials.");
     }
   };
 
