@@ -8,8 +8,9 @@ const Navbar = () => {
      <nav className="bg-gradient-to-r from-pink-100 to-purple-100 px-6 py-4 flex items-center justify-between shadow-md">
       {/* Logo */}
       <div className="flex ">
-        <span className="text-red-500 text-3xl font-extrabold">S</span>
+        
         <span className="text-2xl font-extrabold text-gray-800 underline decoration-red-500 underline-offset-4 ">
+          <span className="text-red-500 text-3xl font-extrabold ">S</span>
           <span className="">peedUp</span> <span >Infotech</span>
         </span>
       </div>
