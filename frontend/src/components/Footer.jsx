@@ -70,7 +70,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-200 text-center text-gray-600">
-          <p>© {new Date().getFullYear()} EduConnect. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} SpeedUp Infotech. All rights reserved.</p>
         </div>
       </div>
     </footer>
