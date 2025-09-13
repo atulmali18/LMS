@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext'
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   return (
-     <nav className="bg-gradient-to-r from-pink-100 to-purple-100 px-6 py-4 flex items-center justify-between shadow-md">
+     <nav className="bg-gradient-to-r from-pink-100 to-purple-100 px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-50">
       {/* Logo */}
       <div className="flex ">
         
