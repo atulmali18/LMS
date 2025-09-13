@@ -91,7 +91,7 @@ const Home = () => {
         {/* Content */}
         <div className="max-w-6xl mx-auto relative z-10">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
-            Why Choose EduConnect?
+            Why Choose SpeedUp Infotech?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
